@@ -1,0 +1,11 @@
+easyocr
+opencv-python
+sentence-transformers
+transformers
+httpx
+streamlit
+optimum
+onnxruntime
+fastapi
+uvicorn
+python-multipart
