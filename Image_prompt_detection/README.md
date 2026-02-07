@@ -10,8 +10,8 @@ graph TD
     Split --> EngineD[Engine D: Prompt Injection]
     EngineD --> OCR[EasyOCR: Extract Text]
     OCR --> Norm[Normalization Layer]
-    Norm --> InjectModel[DeBERTa Prompt Injection (ONNX)]
-    InjectModel --> ThreatCheck{Threat Dictionary (aux)}
+    Norm --> InjectModel[DeBERTa Prompt Injection - ONNX]
+    InjectModel --> ThreatCheck{Threat Dictionary - aux}
     ThreatCheck --> RiskScore[Risk Score + Reason]
 
     %% Engine E Logic
