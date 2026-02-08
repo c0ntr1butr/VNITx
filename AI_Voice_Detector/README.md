@@ -1,3 +1,15 @@
+---
+title: Vnitx Audio
+emoji: 📉
+colorFrom: blue
+colorTo: blue
+sdk: docker
+pinned: false
+license: mit
+short_description: AI vs Human Audio Detection for deepfakes
+---
+
+
 # 🎙️ Voice Detection API
 
 A production-ready REST API that detects whether a voice recording is AI-generated or human using hybrid analysis (physics-based + deep learning).

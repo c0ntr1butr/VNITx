@@ -7,7 +7,7 @@ voice_auth_model.pkl
 
 .env
 test.py
-
+.gitattributes
 
 # Python
 __pycache__/
