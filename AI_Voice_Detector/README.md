@@ -159,6 +159,17 @@ print(f"Classification: {result['classification']}")
 print(f"Confidence: {result['confidenceScore']}")
 ```
 
+**Example response:**
+```json
+{
+  "status": "success",
+  "language": "English",
+  "classification": "AI_GENERATED",
+  "confidenceScore": 0.87,
+  "explanation": "Deep learning model detected synthetic voice patterns (confidence: 87.0%)"
+}
+```
+
 ### Realtime Streaming (WebSocket)
 
 Endpoint: `ws://localhost:5000/ws/voice-stream`
@@ -198,6 +209,21 @@ on the final buffer.
 { "type": "final_result", "result": { "status": "success", "classification": "HUMAN" } }
 ```
 
+**Example final_result payload:**
+```json
+{
+  "type": "final_result",
+  "result": {
+    "status": "success",
+    "classification": "AI_GENERATED",
+    "confidenceScore": 0.81,
+    "explanation": "Acoustic parameters lack natural human variability",
+    "detectedLanguage": "English",
+    "analysisMode": "full"
+  }
+}
+```
+
 **Browser example:**
 ```javascript
 const ws = new WebSocket("ws://localhost:5000/ws/voice-stream?api_key=sk_test_123456789");
@@ -233,6 +259,17 @@ curl -X POST http://localhost:5000/api/feedback \
 
 Stored samples are written to `data/feedback/<LABEL>/YYYYMMDD/` along with
 metadata JSON files and an index.
+
+**Example response:**
+```json
+{
+  "status": "success",
+  "id": "3b4f99a1-7c2e-4a0f-ae02-3a3f8b1f1f90",
+  "label": "AI_GENERATED",
+  "audioFormat": "mp3",
+  "stored": true
+}
+```
 
 ### Train Calibration (Self-Learning)
 
@@ -386,6 +423,30 @@ detector = HybridEnsembleDetector(
 ```
 
 ## 🏗️ Architecture
+
+### System Overview (Mermaid)
+
+```mermaid
+flowchart TD
+    A[Client App] -->|REST /api/voice-detection| B[Flask API]
+    A -->|WebSocket /ws/voice-stream| C[Streaming Session]
+    A -->|REST /api/feedback| D[Feedback Storage]
+
+    B --> E[Preprocess Audio]
+    C --> E
+    E --> F[Whisper Language Detection]
+    E --> G[Physics Features]
+    E --> H[Wav2Vec2 Deepfake Model]
+    G --> I[Score Ensemble]
+    H --> I
+    I --> J[Calibration Layer]
+    J --> K[Classification + Explanation]
+
+    D --> L[Self-Learning Train Script]
+    L --> M[Calibration JSON]
+    M --> J
+    M --> N[Calibration History]
+```
 
 ### Detection Pipeline
 
