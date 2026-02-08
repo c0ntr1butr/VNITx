@@ -35,10 +35,6 @@ This challenge focuses on building a robust security framework that detects and 
 3) Run cross‑modal checks (audio ↔ image/video, OCR ↔ image, caption ↔ OCR).  
 4) Aggregate signals into a final risk score and mitigation action.
 
-## Quick Start (Repo)
-```bash
-cd /Users/bhoomishukla/Documents/hackiitk/visual-security-engine
-```
 
 ## Modules
 - `AI_Voice_Detector/` — audio deepfake/voice‑cloning detection with streaming API
@@ -55,13 +51,6 @@ Each module has its own README with setup and run instructions:
 - **Outputs:** `final_score` (0–1), `action` (ALLOW / FLAG / BLOCK), and explanations.
 - **Default thresholds:** FLAG ≥ 0.5, BLOCK ≥ 0.7 (module‑specific overrides may apply).
 
-## Repo Layout
-```
-AI_Voice_Detector/
-Image_prompt_detection/
-Video_prompt_detection/
-README.md
-```
 
 ## Notes
 - Models are cached on first run to enable offline use.
