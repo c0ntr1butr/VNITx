@@ -29,8 +29,43 @@ This challenge focuses on building a robust security framework that detects and 
 - Block, flag, or downgrade suspicious inputs before agent execution.
 - Provide explanations for detected threats.
 
+## High-Level Architecture
+1) Ingest audio, image, or video inputs.  
+2) Run modality-specific detectors (voice deepfake, OCR + prompt injection, video deepfake).  
+3) Run cross‑modal checks (audio ↔ image/video, OCR ↔ image, caption ↔ OCR).  
+4) Aggregate signals into a final risk score and mitigation action.
+
+## Quick Start (Repo)
+```bash
+cd /Users/bhoomishukla/Documents/hackiitk/visual-security-engine
+```
+
 ## Modules
+- `AI_Voice_Detector/` — audio deepfake/voice‑cloning detection with streaming API
 - `Image_prompt_detection/` — image OCR + prompt injection + cross‑modal checks
 - `Video_prompt_detection/` — video analysis (frames, deepfake checks, AV sync, risk scoring)
 
-Each module has its own README with setup and run instructions.
+Each module has its own README with setup and run instructions:
+- `AI_Voice_Detector/README.md`
+- `Image_prompt_detection/README.md`
+- `Video_prompt_detection/README.md`
+
+## Risk Scoring & Mitigation (Unified)
+- **Inputs:** model confidence, OCR confidence, cross‑modal alignment, deepfake scores.
+- **Outputs:** `final_score` (0–1), `action` (ALLOW / FLAG / BLOCK), and explanations.
+- **Default thresholds:** FLAG ≥ 0.5, BLOCK ≥ 0.7 (module‑specific overrides may apply).
+
+## Repo Layout
+```
+AI_Voice_Detector/
+Image_prompt_detection/
+Video_prompt_detection/
+README.md
+```
+
+## Notes
+- Models are cached on first run to enable offline use.
+- Use separate terminals for each API when running multiple services.
+
+## Getting Started
+Start from the module you want and follow its README.
