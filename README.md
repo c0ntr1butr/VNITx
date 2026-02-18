@@ -58,3 +58,10 @@ Each module has its own README with setup and run instructions:
 
 ## Getting Started
 Start from the module you want and follow its README.
+
+You can run each module independently based on your use case:
+- For voice deepfake detection → navigate to `AI_Voice_Detector/`
+- For image prompt injection detection → navigate to `Image_prompt_detection/`
+- For video deepfake and cross-modal checks → navigate to `Video_prompt_detection/`
+
+Each module exposes its own API endpoint and can be deployed separately or integrated into a unified security pipeline.
