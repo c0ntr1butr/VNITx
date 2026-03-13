@@ -464,7 +464,13 @@ with tab_video:
     video_transcript = st.text_area(
         "Audio transcript (optional)", height=100, key="video_audio_transcript"
     )
-    extract_audio = st.checkbox("Also analyze extracted audio with Audio API", value=True)
+    is_capture_source = video_source != "Upload file"
+    extract_audio = st.checkbox(
+        "Also analyze extracted audio with Audio API",
+        value=not is_capture_source,
+        disabled=is_capture_source,
+        help="Disabled for screen-capture videos (no reliable audio track). Use file upload if you need audio analysis.",
+    )
     extracted_audio_language = st.selectbox(
         "Extracted audio language",
         ["English", "Tamil", "Hindi", "Malayalam", "Telugu"],
